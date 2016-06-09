@@ -1,18 +1,21 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-
-/*
-* when the button is clicked,
-* onButtonClick is fired, 
-* the variable "name" is set to 
-* the input value via the "refs" object.
-* We then set the sate of name to equal the variable
- */
+let React = require('react');
+let ReactDOM = require('react-dom');
+let {Route, Router, IndexRoute, hashHistory} = require('react-router');
+let Main = require('Main');
+let Weather = require('Weather');
+let About = require('About');
+let Examples = require('Examples');
 
 let firstName = "Joshua";
 
 ReactDOM.render(
-	<h1>React Boilerplate</h1>, 
+	<Router history={hashHistory}> 
+		<Route path="/" component={Main}>
+			<Route path="about" component={About} />
+			<Route path="examples" component={Examples} />
+			<IndexRoute component={Weather} />
+		</Route>
+	</Router>,
 	document.getElementById('app')
 );
 
